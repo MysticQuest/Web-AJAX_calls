@@ -2,14 +2,18 @@
 
 <div id="output2"></div>
 
-<script src="test.js"></script>
-
 <script>
   var output1 = document.getElementById('output1');
   var output2 = document.getElementById('output2');
 
   var hr = new XMLHttpRequest();
-  var url = 'test.js';
+  var url = 'call.json';
+
+  hr.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      output1.innerHTML = hr.responseText;
+    }
+  };
 
   hr.open('GET', url, true);
   hr.send();
