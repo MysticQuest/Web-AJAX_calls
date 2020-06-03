@@ -1,0 +1,30 @@
+<div id="output1">People List<br /></div>
+
+<div id="output2"></div>
+
+<script src="test.js"></script>
+
+<script>
+  var output1 = document.getElementById('output1');
+  var output2 = document.getElementById('output2');
+
+  var myObj = JSON.parse(myJSON);
+
+  console.log(myObj);
+
+  for (var i = 0; i < myObj.people.length; i++) {
+    output1.innerHTML +=
+      '<br>' + myObj.people[i].firstName + ' ' + myObj.people[i].lastName;
+  }
+
+  for (var i = 0; i < myObj.places.length; i++) {
+    output2.innerHTML +=
+      '<br>' +
+      myObj.places[i].location +
+      ' (' +
+      myObj.places[i].lat +
+      ',' +
+      myObj.places[i].long +
+      ')';
+  }
+</script>
