@@ -1,3 +1,4 @@
 <?php
-echo 'hello'
+$info=$_POST['fname'];
+echo 'Added = '.$info;
 ?>

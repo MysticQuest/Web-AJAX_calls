@@ -1,14 +1,17 @@
-<form name="TestForm">
+<form name="TestForm" action="call.php" method="post">
   First: <input type="text" name="fname" id="fname" value="tester" /><br />
   Last: <input type="text" name="lname" id="lname" value="lasttestname" /><br />
   Age: <input type="number" name="age" id="age" value="324" /><br />
   <input type="button" value="Send via AJAX" onclick="postData()" />
+  <input type="submit" />
 </form>
 
 <div id="output1"></div>
+<div id="status">Status</div>
 
 <script>
   var output1 = document.getElementById('output1');
+  var astatus = document.getElementById('status');
 
   function postData() {
     var firstName = document.getElementById('fname').value;
@@ -24,11 +27,15 @@
 
     hr.onreadystatechange = function () {
       if (this.readyState == 4 && this.status == 200) {
+        astatus.innerHTML = hr.responseText;
         console.log(hr.responseText);
       }
     };
 
-    hr.open('GET', url, true);
+    hr.open('POST', url, true);
+    hr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
     hr.send(vars);
+    astatus.innerHTML = 'loading...';
   }
 </script>
